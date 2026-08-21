@@ -1,0 +1,178 @@
+<main class="site">
+	<header class="hero" id="inicio">
+		<nav class="hero__nav">
+			<div class="brand">Córdoba & Asociados</div>
+			<div class="links">
+				<a href="#areas">Áreas</a>
+				<a href="#nosotros">Nosotros</a>
+				<a href="#proceso">Proceso</a>
+				<a href="#contacto">Contacto</a>
+			</div>
+		</nav>
+
+		<div class="hero__content">
+			<p class="eyebrow">Amparos de salud</p>
+			<h1>Cuando tu prepaga o tu obra social no responde, actuamos.</h1>
+			<p>
+				Hacemos Amparos de Salud para lograr la cobertura de medicamentos, tratamientos, estudios y
+				cirugías con respaldo legal y sin demoras innecesarias.
+			</p>
+			<a class="cta" href="#contacto">Hace tu consulta gratis</a>
+		</div>
+	</header>
+
+	<section class="section" id="areas">
+		<p class="section__index">II · AREAS</p>
+		<h2>Lo que resolvemos</h2>
+		<div class="cards-grid">
+			<article class="card">
+				<span>01 · CUIDADOS</span>
+				<h3>Cuidados geriátricos</h3>
+				<p>Reclamo judicial urgente por cobertura integral de geriátrico indicado por médico tratante.</p>
+			</article>
+			<article class="card">
+				<span>02 · CUIDADOS </span>
+				<h3>Cuidados domiciliarios</h3>
+				<p>Acción de amparo para obtener asistencia domiciliaria sin demoras ni cortes de prestación.</p>
+			</article>
+			<article class="card">
+				<span>03 · TRATAMIENTO</span>
+				<h3>Medicamentos de alto costo</h3>
+				<p>Exigimos cobertura de tratamientos oncológicos, crónicos y otras patologías complejas.</p>
+			</article>
+			<article class="card">
+				<span>04 · PRESTACION</span>
+				<h3>Cirugías y prótesis</h3>
+				<p>Gestión de medida cautelar para autorizaciones y cobertura completa de la intervención.</p>
+			</article>
+			<article class="card">
+				<span>05 · PRESTACION Y CUIDADOS</span>
+				<h3>Discapacidad</h3>
+				<p>Reclamo por acompañante terapéutico, terapias, centros de día, educación y otras prestaciones.</p>
+			</article>
+			<article class="card">
+				<span>06 · PRESTACION</span>
+				<h3>Salud mental</h3>
+				<p>Defensa legal para internaciones, psiquiatría, medicación y cobertura integral según indicación.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="section split" id="nosotros">
+		<div>
+			<p class="section__index">IV · LO QUE NOS DEFINE</p>
+			<h2>Lo que nos distingue</h2>
+			<ul>
+				<li>Dedicados exclusivamente a Amparos de Salud.</li>
+				<li>Actuación ante obras sociales, prepagas y PAMI.</li>
+				<li>Seguimiento desde la presentación hasta el cumplimiento efectivo.</li>
+			</ul>
+		</div>
+		<div class="highlight-box">
+			<h3>La figura del amparo</h3>
+			<p>
+				Cuando una cobertura médica niega o demora una prestación urgente, el amparo de salud permite
+				obtener una orden judicial para proteger tu derecho en tiempos compatibles con el tratamiento.
+			</p>
+		</div>
+	</section>
+
+	<section class="section" id="proceso">
+		<p class="section__index">V · METODO</p>
+		<h2>Como trabajamos</h2>
+		<div class="steps">
+			<div><strong>01</strong><h3>Consulta inicial</h3><p>Nos contás la situación, evaluamos tu caso <b>gratis</b> analizando su viabilidad.</p></div>
+			<div><strong>02</strong><h3>Estrategia</h3><p>Definimos enfoque legal, documentación necesaria y medidas urgentes para el caso.</p></div>
+			<div><strong>03</strong><h3>Presentacion</h3><p>Iniciamos amparo y cautelar para lograr cobertura inmediata.</p></div>
+			<div><strong>04</strong><h3>Seguimiento</h3><p>La obra social queda obligada a cubrir el tratamiento. Seguimos el caso hasta su cumplimiento efectivo.</p></div>
+		</div>
+	</section>
+
+	<section class="section section-contact" id="contacto">
+		<div class="contact-copy">
+			<p class="section__index">VI · CONTACTO</p>
+			<h2>Consultar tu caso</h2>
+			<p><strong>Ubicación:</strong> Ciudad Autónoma de Buenos Aires (CABA)</p>
+			<a
+				class="whatsapp-link"
+				href="https://wa.me/5491131076843?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20una%20cobertura%20de%20salud."
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Escribinos por WhatsApp
+			</a>
+		</div>
+
+		<form class="contact-form" (ngSubmit)="submitForm()" #consultationForm="ngForm">
+			<label>
+				Nombre completo *
+				<input type="text" name="fullName" [(ngModel)]="form.fullName" required />
+			</label>
+
+			<label>
+				Telefono / WhatsApp *
+				<input type="text" name="phone" [(ngModel)]="form.phone" required />
+			</label>
+
+			<label>
+				Email *
+				<input type="email" name="email" [(ngModel)]="form.email" required />
+			</label>
+
+			<label>
+				Tipo de consulta
+				<select name="consultationType" [(ngModel)]="form.consultationType">
+					<option value="">Seleccionar</option>
+					<option value="Cobertura denegada">Cobertura denegada</option>
+					<option value="Cobertura parcial">Cobertura parcial</option>
+					<option value="Demora en autorizacion">Demora en autorizacion</option>
+				</select>
+			</label>
+
+			<label>
+				Tipo de cobertura
+				<select name="coverageType" [(ngModel)]="form.coverageType">
+					<option value="">Seleccionar</option>
+					<option value="Prepaga">Prepaga</option>
+					<option value="Obra social">Obra social</option>
+					<option value="PAMI">PAMI</option>
+				</select>
+			</label>
+
+			<label>
+				Lugar de residencia *
+				<input type="text" name="location" [(ngModel)]="form.location" required />
+			</label>
+
+			<label>
+				Descripcion breve del caso *
+				<textarea name="caseDescription" rows="5" [(ngModel)]="form.caseDescription" required></textarea>
+			</label>
+
+			<label>
+				Tenes la negativa por escrito?
+				<select name="hasWrittenDenial" [(ngModel)]="form.hasWrittenDenial">
+					<option value="No">No</option>
+					<option value="Si">Si</option>
+				</select>
+			</label>
+
+			<button type="submit" [disabled]="isSubmitting || consultationForm.invalid">
+				{{ isSubmitting ? 'Enviando...' : 'Enviar consulta' }}
+			</button>
+
+			<p class="message ok" *ngIf="submitMessage">{{ submitMessage }}</p>
+			<p class="message error" *ngIf="submitError">{{ submitError }}</p>
+		</form>
+	</section>
+
+	<a
+		class="whatsapp-float"
+		href="https://wa.me/5491131076843?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20una%20cobertura%20de%20salud."
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="Contactar por WhatsApp"
+	>
+		<img src="img/WhatsApp.png" alt="Contactar por WhatsApp" />
+	</a>
+</main>
