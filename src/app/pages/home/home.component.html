@@ -1,7 +1,7 @@
 <main class="site">
 	<header class="hero" id="inicio">
 		<nav class="hero__nav">
-			<div class="brand">Córdoba & Asociados</div>
+			<div class="brand"> Lorena Córdoba</div>
 			<div class="links">
 				<a href="#areas">Áreas</a>
 				<a href="#nosotros">Nosotros</a>
@@ -42,18 +42,18 @@
 			</article>
 			<article class="card">
 				<span>04 · PRESTACION</span>
-				<h3>Cirugías y prótesis</h3>
+				<h3>Cirugías</h3>
 				<p>Gestión de medida cautelar para autorizaciones y cobertura completa de la intervención.</p>
 			</article>
 			<article class="card">
-				<span>05 · PRESTACION Y CUIDADOS</span>
-				<h3>Discapacidad</h3>
-				<p>Reclamo por acompañante terapéutico, terapias, centros de día, educación y otras prestaciones.</p>
+				<span>05 · TRATAMIENTO</span>
+				<h3>Prótesis - Tratamientos</h3>
+				<p>Gestión de medida cautelar para autorizaciones y cobertura completa de la intervención.</p>
 			</article>
 			<article class="card">
-				<span>06 · PRESTACION</span>
-				<h3>Salud mental</h3>
-				<p>Defensa legal para internaciones, psiquiatría, medicación y cobertura integral según indicación.</p>
+				<span>06 · PRESTACION Y CUIDADOS</span>
+				<h3>Discapacidad</h3>
+				<p>Reclamo por acompañante terapéutico, terapias, centros de día, educación y otras prestaciones.</p>
 			</article>
 		</div>
 	</section>
@@ -63,8 +63,7 @@
 			<p class="section__index">IV · LO QUE NOS DEFINE</p>
 			<h2>Lo que nos distingue</h2>
 			<ul>
-				<li>Dedicados exclusivamente a Amparos de Salud.</li>
-				<li>Actuación ante obras sociales, prepagas y PAMI.</li>
+				<li>Dedicada exclusivamente a Amparos</li>
 				<li>Seguimiento desde la presentación hasta el cumplimiento efectivo.</li>
 			</ul>
 		</div>
@@ -166,13 +165,44 @@
 		</form>
 	</section>
 
-	<a
+	<button
+		type="button"
 		class="whatsapp-float"
-		href="https://wa.me/5491131076843?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20una%20cobertura%20de%20salud."
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="Contactar por WhatsApp"
+		aria-label="Hablar con el asistente virtual"
+		(click)="toggleAssistant()"
 	>
 		<img src="img/WhatsApp.png" alt="Contactar por WhatsApp" />
-	</a>
+	</button>
+
+	<div class="assistant-panel" [class.is-open]="assistantOpen">
+		<div class="assistant-header">
+			<div>
+				<strong>Asistente virtual</strong>
+				<span>Amparos de salud</span>
+			</div>
+			<button type="button" class="assistant-close" aria-label="Cerrar chat" (click)="toggleAssistant()">
+				×
+			</button>
+		</div>
+
+		<div class="assistant-body" #assistantBody>
+			<div *ngFor="let message of assistantMessages" class="assistant-message" [class.user]="message.role === 'user'">
+				{{ message.text }}
+			</div>
+			<div *ngIf="assistantLoading" class="assistant-message bot">Escribiendo...</div>
+		</div>
+
+		<div class="assistant-footer">
+			<input
+				type="text"
+				[(ngModel)]="assistantInput"
+				placeholder="Escribí tu consulta..."
+				(keyup.enter)="sendAssistantMessage()"
+				name="assistantInput"
+			/>
+			<button type="button" (click)="sendAssistantMessage()" [disabled]="assistantLoading || !assistantInput.trim()">
+				Enviar
+			</button>
+		</div>
+	</div>
 </main>
