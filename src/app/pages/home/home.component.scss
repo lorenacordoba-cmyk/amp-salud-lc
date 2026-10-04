@@ -98,13 +98,9 @@ a { color: inherit; }
 .practice-card { min-height:325px; cursor:pointer; padding:28px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; background:#fff; transition:transform .25s ease,box-shadow .25s ease,background .25s ease; }
 .practice-card:focus-visible { outline:3px solid rgba(166,129,71,.35); outline-offset:3px; }
 .practice-card:hover { transform:translateY(-5px); box-shadow:0 18px 45px rgba(33,43,45,.08); z-index:2; }
-.practice-card.featured { background:var(--navy); color:#fff; }
 .card-number { margin-left:auto; color:#a4aaa9; font-size:.7rem; letter-spacing:.14em; }
-.featured .card-number { color:#82969c; }
 .practice-card h3 { margin:28px 0 10px; font-family:Georgia,serif; font-size:1.35rem; font-weight:500; color:var(--navy); }
-.practice-card.featured h3 { color:white; }
 .practice-card p { margin:0; color:#747b7c; line-height:1.65; font-size:.88rem; }
-.practice-card.featured p { color:#b8c2c4; }
 .card-more { margin-top:auto; padding-top:25px; color:var(--gold); font-size:.78rem; font-weight:700; }
 
 .studio-section { display:grid; grid-template-columns:.85fr 1.15fr; gap:78px; align-items:stretch; padding-top:40px; }
@@ -284,8 +280,7 @@ a { color: inherit; }
   .section-heading > p { font-size: .91rem; line-height: 1.65; }
 
   .practice-grid { border-left: 0; gap: 12px; border-top: 0; }
-  .practice-card,
-  .practice-card.featured {
+  .practice-card {
     min-height: auto;
     padding: 24px 22px;
     border: 1px solid var(--line);
@@ -342,8 +337,8 @@ a { color: inherit; }
   .section-heading h2,.studio-content h2,.process-heading h2{font-size:clamp(1.95rem,8.8vw,2.45rem);}
   .kicker{margin-bottom:11px;}
 
-  .practice-grid{gap:10px;}
-  .practice-card,.practice-card.featured{padding:22px 20px;border-radius:4px;touch-action:manipulation;}
+  .practice-grid{grid-auto-rows:1fr;gap:10px;}
+  .practice-card{padding:22px 20px;border-radius:4px;touch-action:manipulation;}
   .practice-card:active{transform:scale(.995);}
   .practice-card h3{margin-top:16px;}
   .card-more{margin-top:18px;min-height:40px;display:flex;align-items:center;}
@@ -364,7 +359,7 @@ a { color: inherit; }
   .hero-visual{min-height:260px;}
   .legal-card{min-height:215px;}
   .practice-section,.studio-section,.process-section{width:calc(100% - 24px);}
-  .practice-card,.practice-card.featured{padding:20px 17px;}
+  .practice-card{padding:20px 17px;}
 }
 
 /* Movimiento y color: refinamiento visual sobrio */
@@ -500,11 +495,8 @@ a { color: inherit; }
 .practice-card{background:#fff}
 .practice-card:hover{box-shadow:0 18px 45px rgba(11,45,92,.10)}
 .practice-card:focus-visible{outline-color:rgba(37,99,185,.35)}
-.practice-card.featured{background:linear-gradient(150deg,#0b2d5c,#123e78)}
 .practice-card p{color:#6b7788}
-.practice-card.featured p{color:#c2cede}
 .card-number{color:#94a0b1}
-.featured .card-number{color:#8da7c5}
 
 .studio-panel{background:linear-gradient(150deg,#0b2d5c,#123e78)}
 .studio-panel::after{border-color:rgba(215,182,111,.2)}
