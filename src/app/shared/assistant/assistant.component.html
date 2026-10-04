@@ -1,0 +1,21 @@
+<button type="button" class="assistant-float" aria-label="Abrir asistente inteligente" (click)="toggleAssistant()">
+  <span class="assistant-badge" aria-hidden="true">IA</span>
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M16 15h32a8 8 0 0 1 8 8v19a8 8 0 0 1-8 8H31l-10 8v-8h-5a8 8 0 0 1-8-8V23a8 8 0 0 1 8-8Z"/>
+    <path d="M24 30h16M24 38h11"/>
+  </svg>
+</button>
+<div class="assistant-panel" [class.is-open]="assistantOpen" role="dialog" aria-label="Asistente virtual">
+  <div class="assistant-header">
+    <div><strong>Asistente inteligente</strong><span>Estudio Jurídico Lorena Córdoba</span></div>
+    <button type="button" class="assistant-close" aria-label="Cerrar chat" (click)="toggleAssistant()">×</button>
+  </div>
+  <div class="assistant-body" #assistantBody>
+    <div *ngFor="let message of assistantMessages" class="assistant-message" [class.user]="message.role === 'user'">{{ message.text }}</div>
+    <div *ngIf="assistantLoading" class="assistant-message bot">Escribiendo...</div>
+  </div>
+  <div class="assistant-footer">
+    <textarea [(ngModel)]="assistantInput" placeholder="Escribí tu consulta..." name="assistantInput" rows="2" aria-label="Mensaje para el asistente"></textarea>
+    <button type="button" (click)="sendAssistantMessage()" [disabled]="assistantLoading || !assistantInput.trim()">Enviar</button>
+  </div>
+</div>

@@ -1,208 +1,150 @@
 <main class="site">
-	<header class="hero" id="inicio">
-		<nav class="hero__nav">
-			<div class="brand"> Lorena Córdoba</div>
-			<div class="links">
-				<a href="#areas">Áreas</a>
-				<a href="#nosotros">Nosotros</a>
-				<a href="#proceso">Proceso</a>
-				<a href="#contacto">Contacto</a>
-			</div>
-		</nav>
+  <header class="topbar" id="inicio">
+    <a class="brand" href="#inicio" aria-label="Lorena Córdoba Estudio Jurídico - Inicio">
+      <span class="brand-mark" aria-hidden="true"><span>L</span><span>C</span></span>
+      <span class="brand-copy">
+        <strong>Lorena Córdoba</strong>
+        <small>Estudio Jurídico</small>
+      </span>
+    </a>
 
-		<div class="hero__content">
-			<p class="eyebrow">Amparos de salud</p>
-			<h1>Cuando tu prepaga o tu obra social no responde, actuamos.</h1>
-			<p>
-				Hacemos Amparos de Salud para lograr la cobertura de medicamentos, tratamientos, estudios y
-				cirugías con respaldo legal y sin demoras innecesarias.
-			</p>
-			<a class="cta" href="#contacto">Hace tu consulta gratis</a>
-		</div>
-	</header>
+    <button
+      type="button"
+      class="menu-toggle"
+      [class.is-open]="mobileMenuOpen"
+      [attr.aria-expanded]="mobileMenuOpen"
+      aria-controls="main-navigation"
+      aria-label="Abrir menú de navegación"
+      (click)="toggleMobileMenu()"
+    >
+      <span></span><span></span><span></span>
+    </button>
 
-	<section class="section" id="areas">
-		<p class="section__index">II · AREAS</p>
-		<h2>Lo que resolvemos</h2>
-		<div class="cards-grid">
-			<article class="card">
-				<span>01 · CUIDADOS</span>
-				<h3>Cuidados geriátricos</h3>
-				<p>Reclamo judicial urgente por cobertura integral de geriátrico indicado por médico tratante.</p>
-			</article>
-			<article class="card">
-				<span>02 · CUIDADOS </span>
-				<h3>Cuidados domiciliarios</h3>
-				<p>Acción de amparo para obtener asistencia domiciliaria sin demoras ni cortes de prestación.</p>
-			</article>
-			<article class="card">
-				<span>03 · TRATAMIENTO</span>
-				<h3>Medicamentos de alto costo</h3>
-				<p>Exigimos cobertura de tratamientos oncológicos, crónicos y otras patologías complejas.</p>
-			</article>
-			<article class="card">
-				<span>04 · PRESTACION</span>
-				<h3>Cirugías</h3>
-				<p>Gestión de medida cautelar para autorizaciones y cobertura completa de la intervención.</p>
-			</article>
-			<article class="card">
-				<span>05 · TRATAMIENTO</span>
-				<h3>Prótesis - Tratamientos</h3>
-				<p>Gestión de medida cautelar para autorizaciones y cobertura completa de la intervención.</p>
-			</article>
-			<article class="card">
-				<span>06 · PRESTACION Y CUIDADOS</span>
-				<h3>Discapacidad</h3>
-				<p>Reclamo por acompañante terapéutico, terapias, centros de día, educación y otras prestaciones.</p>
-			</article>
-		</div>
-	</section>
+    <nav id="main-navigation" class="nav-links" [class.is-open]="mobileMenuOpen" aria-label="Navegación principal">
+      <a href="#areas" (click)="closeMobileMenu()">Áreas</a>
+      <a href="#nosotros" (click)="closeMobileMenu()">El estudio</a>
+      <a href="#proceso" (click)="closeMobileMenu()">Cómo trabajamos</a>
+      <a routerLink="/contacto" (click)="closeMobileMenu()">Contacto</a>
+      <button type="button" class="mobile-nav-cta" (click)="openAssistant(); closeMobileMenu()">Consulta inicial</button>
+    </nav>
 
-	<section class="section split" id="nosotros">
-		<div>
-			<p class="section__index">IV · LO QUE NOS DEFINE</p>
-			<h2>Lo que nos distingue</h2>
-			<ul>
-				<li>Dedicada exclusivamente a Amparos</li>
-				<li>Seguimiento desde la presentación hasta el cumplimiento efectivo.</li>
-			</ul>
-		</div>
-		<div class="highlight-box">
-			<h3>La figura del amparo</h3>
-			<p>
-				Cuando una cobertura médica niega o demora una prestación urgente, el amparo de salud permite
-				obtener una orden judicial para proteger tu derecho en tiempos compatibles con el tratamiento.
-			</p>
-		</div>
-	</section>
+    <button type="button" class="nav-cta" (click)="openAssistant()">Consulta inicial</button>
+  </header>
 
-	<section class="section" id="proceso">
-		<p class="section__index">V · METODO</p>
-		<h2>Como trabajamos</h2>
-		<div class="steps">
-			<div><strong>01</strong><h3>Consulta inicial</h3><p>Nos contás la situación, evaluamos tu caso <b>gratis</b> analizando su viabilidad.</p></div>
-			<div><strong>02</strong><h3>Estrategia</h3><p>Definimos enfoque legal, documentación necesaria y medidas urgentes para el caso.</p></div>
-			<div><strong>03</strong><h3>Presentacion</h3><p>Iniciamos amparo y cautelar para lograr cobertura inmediata.</p></div>
-			<div><strong>04</strong><h3>Seguimiento</h3><p>La obra social queda obligada a cubrir el tratamiento. Seguimos el caso hasta su cumplimiento efectivo.</p></div>
-		</div>
-	</section>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy" appReveal>
+      <p class="eyebrow"><span></span> Derecho · estrategia · cercanía</p>
+      <h1 id="hero-title">Defendemos tus derechos con estrategia y compromiso.</h1>
+      <p class="hero-lead">
+        Asesoramiento jurídico claro y personalizado, con especial enfoque en amparos de salud,
+        derecho del consumidor y reclamos que requieren una respuesta concreta.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" routerLink="/contacto">Consultar mi caso</a>
+        <a class="button button-secondary" href="#areas">Ver áreas de práctica</a>
+      </div>
+      <div class="hero-trust" aria-label="Características del servicio">
+        <div><strong>Atención directa</strong><span>Sin intermediarios</span></div>
+        <div><strong>Respuesta clara</strong><span>Sabés cómo avanza tu caso</span></div>
+        <div><strong>Enfoque práctico</strong><span>Estrategia orientada a resultados</span></div>
+      </div>
+    </div>
 
-	<section class="section section-contact" id="contacto">
-		<div class="contact-copy">
-			<p class="section__index">VI · CONTACTO</p>
-			<h2>Consultar tu caso</h2>
-			<p><strong>Ubicación:</strong> Ciudad Autónoma de Buenos Aires (CABA)</p>
-			<a
-				class="whatsapp-link"
-				href="https://wa.me/5491131076843?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre%20una%20cobertura%20de%20salud."
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Escribinos por WhatsApp
-			</a>
-		</div>
+    <div class="hero-visual" appReveal [revealDelay]="120" appPointerGlow aria-hidden="true">
+      <div class="visual-grid"></div>
+      <div class="legal-card">
+        <div class="scales">
+          <span class="beam"></span>
+          <span class="pillar"></span>
+          <span class="pan pan-left"></span>
+          <span class="pan pan-right"></span>
+        </div>
+        <p>“La protección de un derecho empieza por hacerlo valer.”</p>
+      </div>
+      <div class="hero-signature">
+        <span>LC</span>
+        <div><strong>Lorena Córdoba</strong><small>Abogada</small></div>
+      </div>
+    </div>
+  </section>
 
-		<form class="contact-form" (ngSubmit)="submitForm()" #consultationForm="ngForm">
-			<label>
-				Nombre completo *
-				<input type="text" name="fullName" [(ngModel)]="form.fullName" required />
-			</label>
+  <section class="practice-section" id="areas">
+    <div class="section-heading" appReveal>
+      <div>
+        <p class="kicker">Áreas de práctica</p>
+        <h2>Soluciones legales para situaciones que no pueden esperar.</h2>
+      </div>
+      <p>
+        Cada caso necesita una estrategia distinta. Analizamos la documentación, el contexto y la urgencia
+        para definir el camino legal más efectivo.
+      </p>
+    </div>
 
-			<label>
-				Telefono / WhatsApp *
-				<input type="text" name="phone" [(ngModel)]="form.phone" required />
-			</label>
+    <div class="practice-grid">
+      <article class="practice-card featured" appReveal [revealDelay]="0" appPointerGlow routerLink="/especialidades/amparos-de-salud" tabindex="0" role="link" aria-label="Ver especialidad Amparos de salud">
+        <span class="card-number">01</span>
+        <h3>Amparos de salud</h3>
+        <p>Cobertura de medicamentos, tratamientos, cirugías, prestaciones, discapacidad y cuidados.</p>
+        <span class="card-more">Ver especialidad <span>↗</span></span>
+      </article>
+      <article class="practice-card" appReveal [revealDelay]="70" appPointerGlow routerLink="/especialidades/derecho-del-consumidor" tabindex="0" role="link" aria-label="Ver especialidad Derecho del consumidor">
+        <span class="card-number">02</span>
+        <h3>Derecho del consumidor</h3>
+        <p>Reclamos por incumplimientos, prácticas abusivas, daños y conflictos en relaciones de consumo.</p>
+        <span class="card-more">Ver especialidad <span>↗</span></span>
+      </article>
+      <article class="practice-card" appReveal [revealDelay]="140" appPointerGlow routerLink="/especialidades/danos-y-perjuicios" tabindex="0" role="link" aria-label="Ver especialidad Daños y perjuicios">
+        <span class="card-number">03</span>
+        <h3>Daños y perjuicios</h3>
+        <p>Evaluación de responsabilidad, cuantificación del daño y estrategia de reclamo judicial.</p>
+        <span class="card-more">Ver especialidad <span>↗</span></span>
+      </article>
+      <article class="practice-card" appReveal [revealDelay]="210" appPointerGlow routerLink="/especialidades/derecho-previsional" tabindex="0" role="link" aria-label="Ver especialidad Derecho previsional">
+        <span class="card-number">04</span>
+        <h3>Derecho previsional</h3>
+        <p>Orientación en jubilaciones, haberes, reajustes y reclamos frente a organismos previsionales.</p>
+        <span class="card-more">Ver especialidad <span>↗</span></span>
+      </article>
+    </div>
+  </section>
 
-			<label>
-				Email *
-				<input type="email" name="email" [(ngModel)]="form.email" required />
-			</label>
+  <section class="studio-section" id="nosotros">
+    <div class="studio-panel studio-quote" appReveal appPointerGlow>
+      <span class="monogram-large">LC</span>
+      <blockquote>“Entender tu problema es el primer paso para construir una buena solución jurídica.”</blockquote>
+    </div>
+    <div class="studio-content" appReveal [revealDelay]="100">
+      <p class="kicker">El estudio</p>
+      <h2>Asesoramiento profesional, cercano y sin vueltas.</h2>
+      <p>
+        Trabajo cada caso de manera personalizada, explicando con claridad las alternativas, los tiempos y la
+        documentación necesaria. La prioridad es que puedas tomar decisiones informadas y que la estrategia legal
+        tenga un objetivo concreto.
+      </p>
+      <div class="values-grid">
+        <div><span>01</span><strong>Escucha y análisis</strong><p>Primero entendemos el problema completo.</p></div>
+        <div><span>02</span><strong>Estrategia a medida</strong><p>No todos los casos se resuelven de la misma forma.</p></div>
+        <div><span>03</span><strong>Seguimiento real</strong><p>Acompañamiento durante todo el proceso.</p></div>
+        <div><span>04</span><strong>Comunicación clara</strong><p>Información concreta, sin tecnicismos innecesarios.</p></div>
+      </div>
+    </div>
+  </section>
 
-			<label>
-				Tipo de consulta
-				<select name="consultationType" [(ngModel)]="form.consultationType">
-					<option value="">Seleccionar</option>
-					<option value="Cobertura denegada">Cobertura denegada</option>
-					<option value="Cobertura parcial">Cobertura parcial</option>
-					<option value="Demora en autorizacion">Demora en autorizacion</option>
-				</select>
-			</label>
+  <section class="process-section" id="proceso">
+    <div class="section-heading process-heading" appReveal>
+      <div>
+        <p class="kicker">Cómo trabajamos</p>
+        <h2>Un proceso simple para ordenar una situación compleja.</h2>
+      </div>
+    </div>
+    <div class="process-grid">
+      <article appReveal appPointerGlow><span>01</span><h3>Consulta inicial</h3><p>Nos contás la situación y revisamos si existe una vía legal adecuada para tu caso.</p></article>
+      <article appReveal [revealDelay]="70" appPointerGlow><span>02</span><h3>Documentación</h3><p>Te indicamos qué comprobantes, negativas, estudios o antecedentes necesitamos.</p></article>
+      <article appReveal [revealDelay]="140" appPointerGlow><span>03</span><h3>Estrategia</h3><p>Definimos el reclamo, sus prioridades y, cuando corresponde, la medida urgente.</p></article>
+      <article appReveal [revealDelay]="210" appPointerGlow><span>04</span><h3>Seguimiento</h3><p>Impulsamos el expediente y te mantenemos al tanto de cada avance relevante.</p></article>
+    </div>
+  </section>
 
-			<label>
-				Tipo de cobertura
-				<select name="coverageType" [(ngModel)]="form.coverageType">
-					<option value="">Seleccionar</option>
-					<option value="Prepaga">Prepaga</option>
-					<option value="Obra social">Obra social</option>
-					<option value="PAMI">PAMI</option>
-				</select>
-			</label>
-
-			<label>
-				Lugar de residencia *
-				<input type="text" name="location" [(ngModel)]="form.location" required />
-			</label>
-
-			<label>
-				Descripcion breve del caso *
-				<textarea name="caseDescription" rows="5" [(ngModel)]="form.caseDescription" required></textarea>
-			</label>
-
-			<label>
-				Tenes la negativa por escrito?
-				<select name="hasWrittenDenial" [(ngModel)]="form.hasWrittenDenial">
-					<option value="No">No</option>
-					<option value="Si">Si</option>
-				</select>
-			</label>
-
-			<button type="submit" [disabled]="isSubmitting || consultationForm.invalid">
-				{{ isSubmitting ? 'Enviando...' : 'Enviar consulta' }}
-			</button>
-
-			<p class="message ok" *ngIf="submitMessage">{{ submitMessage }}</p>
-			<p class="message error" *ngIf="submitError">{{ submitError }}</p>
-		</form>
-	</section>
-
-	<button
-		type="button"
-		class="whatsapp-float"
-		aria-label="Hablar con el asistente virtual"
-		(click)="toggleAssistant()"
-	>
-		<img src="img/WhatsApp.png" alt="Contactar por WhatsApp" />
-	</button>
-
-	<div class="assistant-panel" [class.is-open]="assistantOpen">
-		<div class="assistant-header">
-			<div>
-				<strong>Asistente virtual</strong>
-				<span>Amparos de salud</span>
-			</div>
-			<button type="button" class="assistant-close" aria-label="Cerrar chat" (click)="toggleAssistant()">
-				×
-			</button>
-		</div>
-
-		<div class="assistant-body" #assistantBody>
-			<div *ngFor="let message of assistantMessages" class="assistant-message" [class.user]="message.role === 'user'">
-				{{ message.text }}
-			</div>
-			<div *ngIf="assistantLoading" class="assistant-message bot">Escribiendo...</div>
-		</div>
-
-		<div class="assistant-footer">
-			<input
-				type="text"
-				[(ngModel)]="assistantInput"
-				placeholder="Escribí tu consulta..."
-				(keyup.enter)="sendAssistantMessage()"
-				name="assistantInput"
-			/>
-			<button type="button" (click)="sendAssistantMessage()" [disabled]="assistantLoading || !assistantInput.trim()">
-				Enviar
-			</button>
-		</div>
-	</div>
+  <app-site-footer></app-site-footer>
+  <app-assistant #assistant></app-assistant>
 </main>

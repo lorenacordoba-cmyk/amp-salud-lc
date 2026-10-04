@@ -1,0 +1,13 @@
+:host{--navy:#132b35;--gold:#a68147;display:block;background:#fbfaf7;border-top:1px solid #ded8cc}.footer{width:min(1180px,calc(100% - 40px));min-height:118px;margin:auto;display:grid;grid-template-columns:1fr 1fr auto;gap:30px;align-items:center;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#1f2a2f}.brand-mark{width:52px;height:52px;position:relative;display:inline-block;color:var(--gold);font-family:Georgia,serif}.brand-mark span{position:absolute;font-size:38px;line-height:1}.brand-mark span:first-child{left:2px;top:2px}.brand-mark span:last-child{left:20px;top:14px;color:var(--navy)}.brand-copy{display:flex;flex-direction:column;line-height:1.1}.brand-copy strong{font-family:Georgia,serif;font-size:1.05rem;font-weight:500;letter-spacing:.025em;text-transform:uppercase}.brand-copy small{margin-top:5px;color:#123e78;text-transform:uppercase;letter-spacing:.26em;font-size:.62rem}.footer p{color:#818888;font-size:.78rem;text-align:center;margin:0}.footer>a:last-child{color:var(--gold);text-decoration:none;font-size:.76rem;font-weight:700}
+@media(max-width:720px){.footer{width:calc(100% - 36px);grid-template-columns:1fr;padding:30px 0 94px;text-align:center;gap:16px}.footer-brand{justify-content:center}.footer p{text-align:center}.footer>a:last-child{justify-self:center}.brand-mark{width:40px;height:42px}.brand-mark span{font-size:30px}.brand-mark span:last-child{left:15px;top:11px}.brand-copy strong{font-size:.88rem}.brand-copy small{margin-top:4px;font-size:.52rem;letter-spacing:.19em}}
+@media(max-width:390px){.brand-copy small{font-size:.48rem;letter-spacing:.14em}}
+
+/* Reserva espacio para el asistente flotante en teléfonos sin deformar el footer. */
+@media(max-width:720px){
+  .footer{padding-bottom:150px;}
+}
+
+/* Blue + Gold Edition */
+:host{--navy:#0b2d5c;--gold:#b78a3a;background:#fff;border-top-color:#dce6f2}
+.brand{color:#17243a}
+.footer p{color:#748196}

@@ -1,0 +1,33 @@
+<main class="specialty-page" *ngIf="specialty">
+  <header class="topbar">
+    <a class="brand" routerLink="/" aria-label="Volver al inicio"><span class="brand-mark" aria-hidden="true"><span>L</span><span>C</span></span><span class="brand-copy"><strong>Lorena Córdoba</strong><small>Estudio Jurídico</small></span></a>
+    <nav class="top-actions"><a routerLink="/contacto">Contacto</a><a class="back-link" routerLink="/">← Inicio</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy" appReveal>
+        <p class="eyebrow">{{ specialty.eyebrow }}</p>
+        <h1>{{ specialty.title }}</h1>
+        <p class="lead">{{ specialty.intro }}</p>
+        <a class="primary-button" routerLink="/contacto">Hacer una consulta</a>
+      </div>
+      <figure class="hero-image" appReveal [revealDelay]="120" appPointerGlow><img [src]="specialty.image" [alt]="specialty.imageAlt" /></figure>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <article class="main-copy" appReveal>
+      <p class="kicker">Cómo podemos ayudarte</p>
+      <h2>Una estrategia jurídica definida según tu situación.</h2>
+      <p>{{ specialty.description }}</p>
+      <div class="service-list"><div *ngFor="let service of specialty.services"><span>✓</span>{{ service }}</div></div>
+    </article>
+    <aside class="side-card" appReveal [revealDelay]="100" appPointerGlow><p class="kicker">Cuándo consultar</p><ul><li *ngFor="let item of specialty.whenToConsult">{{ item }}</li></ul></aside>
+  </section>
+
+  <section class="note-section"><div appReveal><p class="kicker">Importante</p><p>{{ specialty.note }}</p></div></section>
+
+  <app-site-footer></app-site-footer>
+  <app-assistant></app-assistant>
+</main>

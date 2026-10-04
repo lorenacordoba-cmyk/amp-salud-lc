@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="180" viewBox="0 0 740 180" role="img" aria-labelledby="title desc">
+  <title id="title">Lorena Córdoba Estudio Jurídico</title>
+  <desc id="desc">Monograma LC en dorado y azul institucional junto al nombre del estudio.</desc>
+  <rect width="740" height="180" fill="#ffffff"/>
+  <g transform="translate(26 18)">
+    <text x="0" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="104" fill="#b78a3a">L</text>
+    <text x="52" y="123" font-family="Georgia, 'Times New Roman', serif" font-size="88" fill="#0b2d5c">C</text>
+    <line x1="14" y1="132" x2="110" y2="132" stroke="#d7b66f" stroke-width="1"/>
+  </g>
+  <g transform="translate(170 48)">
+    <text x="0" y="42" font-family="Georgia, 'Times New Roman', serif" font-size="38" letter-spacing="2" fill="#0b2d5c">LORENA CÓRDOBA</text>
+    <text x="2" y="84" font-family="Arial, sans-serif" font-size="14" letter-spacing="8" fill="#b78a3a">ESTUDIO JURÍDICO</text>
+  </g>
+</svg>

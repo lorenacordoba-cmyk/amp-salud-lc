@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+/* Motion system shared by the site. The effects are intentionally subtle and
+   automatically disabled when the visitor prefers reduced motion. */
+.js-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity .72s cubic-bezier(.2,.75,.25,1),
+    transform .72s cubic-bezier(.2,.75,.25,1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.js-reveal.is-visible { opacity: 1; transform: translate3d(0,0,0); }
+
+.js-pointer-glow {
+  position: relative;
+  isolation: isolate;
+  transform: perspective(1100px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+  transition: transform .22s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+}
+.js-pointer-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,50%), rgba(183,138,58,.17), transparent 38%);
+  transition: opacity .25s ease;
+}
+.js-pointer-glow:hover::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .js-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .js-pointer-glow { transform: none !important; transition: none !important; }
+  .js-pointer-glow::before { display:none !important; }
+}

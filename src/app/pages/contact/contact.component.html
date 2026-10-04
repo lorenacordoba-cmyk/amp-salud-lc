@@ -1,0 +1,56 @@
+<main class="contact-page">
+    <header class="topbar"><a class="brand" routerLink="/"><span
+                class="brand-mark"><span>L</span><span>C</span></span><span class="brand-copy"><strong>Lorena
+                    Córdoba</strong><small>Estudio Jurídico</small></span></a><a class="back-link" routerLink="/">←
+            Volver al inicio</a></header>
+    <section class="intro" appReveal>
+        <p class="kicker">Contacto</p>
+        <h1>Contame tu caso.</h1>
+        <p>Completá el formulario con los datos principales. La información será utilizada únicamente para evaluar tu
+            consulta y poder orientarte sobre los próximos pasos.</p>
+        <div class="contact-details">
+            <div><small>Atención</small><strong>Ciudad Autónoma de Buenos Aires</strong></div>
+            <div><small>Modalidad</small><strong>Presencial y online</strong></div>
+        </div>
+    </section>
+    <section class="form-wrap">
+        <form class="contact-form" appReveal appPointerGlow (ngSubmit)="submitForm()" #consultationForm="ngForm">
+            <div class="form-head"><span>Consulta inicial</span><strong>Completá tus datos</strong></div>
+            <div class="form-row"><label>Nombre completo *<input type="text" name="fullName" [(ngModel)]="form.fullName"
+                        required /></label><label>Teléfono / WhatsApp *<input type="tel" name="phone"
+                        [(ngModel)]="form.phone" required /></label></div>
+            <div class="form-row"><label>Email *<input type="email" name="email" [(ngModel)]="form.email"
+                        required /></label><label>Lugar de residencia *<input type="text" name="location"
+                        [(ngModel)]="form.location" required /></label></div>
+            <div class="form-row"><label>Tipo de consulta<select name="consultationType"
+                        [(ngModel)]="form.consultationType">
+                        <option value="">Seleccionar</option>
+                        <option value="Cobertura denegada">Cobertura de salud denegada</option>
+                        <option value="Cobertura parcial">Cobertura de salud parcial</option>
+                        <option value="Demora en autorizacion">Demora en autorización</option>
+                        <option value="Consumidor">Derecho del consumidor</option>
+                        <option value="Daños y perjuicios">Daños y perjuicios</option>
+                        <option value="Previsional">Derecho previsional</option>
+                        <option value="Otra">Otra consulta</option>
+                    </select></label><label>Tipo de cobertura<select name="coverageType"
+                        [(ngModel)]="form.coverageType">
+                        <option value="">No aplica / Seleccionar</option>
+                        <option value="Prepaga">Prepaga</option>
+                        <option value="Obra social">Obra social</option>
+                        <option value="PAMI">PAMI</option>
+                    </select></label></div><label>Descripción breve del caso *<textarea name="caseDescription" rows="5"
+                    [(ngModel)]="form.caseDescription" required
+                    placeholder="Contame brevemente qué pasó y qué necesitás resolver."></textarea></label><label
+                class="denial-field">¿Tenés una negativa por escrito?<select name="hasWrittenDenial"
+                    [(ngModel)]="form.hasWrittenDenial">
+                    <option value="No">No</option>
+                    <option value="Si">Sí</option>
+                </select></label><button type="submit" [disabled]="isSubmitting || consultationForm.invalid">{{
+                isSubmitting ? 'Enviando...' : 'Enviar consulta' }}</button>
+            <p class="form-note">La información se utiliza únicamente para evaluar tu consulta.</p>
+            <p class="message ok" *ngIf="submitMessage">{{ submitMessage }}</p>
+            <p class="message error" *ngIf="submitError">{{ submitError }}</p>
+        </form>
+    </section>
+    <app-site-footer /><app-assistant />
+</main>
