@@ -76,7 +76,7 @@ a { color: inherit; }
 .hero-visual::after { content:""; position:absolute; width:240px; height:240px; border:1px solid rgba(198,166,111,.15); border-radius:50%; left:50px; bottom:-70px; }
 .visual-grid { position:absolute; inset:0; opacity:.07; background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px); background-size:54px 54px; }
 .legal-card { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(400px,75%); min-height:360px; border:1px solid rgba(198,166,111,.4); padding:46px; display:flex; flex-direction:column; justify-content:flex-end; background:rgba(255,255,255,.025); backdrop-filter:blur(5px); }
-.legal-card p { margin:0; color:#dfd7c9; font-family:Georgia,serif; font-size:1.22rem; line-height:1.55; }
+.legal-card p { margin:0 0 20px; color:#dfd7c9; font-family:Georgia,serif; font-size:1.22rem; line-height:1.55; text-align:center; }
 .scales { position:absolute; top:48px; left:50%; width:200px; height:150px; transform:translateX(-50%); color:var(--gold-light); }
 .pillar { position:absolute; left:98px; top:10px; width:3px; height:100px; background:currentColor; }
 .beam { position:absolute; left:35px; top:35px; width:130px; height:2px; background:currentColor; }
