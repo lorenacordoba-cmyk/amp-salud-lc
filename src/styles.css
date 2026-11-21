@@ -36,3 +36,61 @@
   .js-pointer-glow { transform: none !important; transition: none !important; }
   .js-pointer-glow::before { display:none !important; }
 }
+
+/* =========================================================
+   MOBILE FOUNDATION
+   Base común para teléfonos, notch/safe-area y controles táctiles.
+   ========================================================= */
+html {
+  min-width: 320px;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: clip;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 720px) {
+  html { scroll-padding-top: 78px; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+}
+
+
+/* =========================================================
+   DESKTOP FOUNDATION
+   ========================================================= */
+@media (min-width: 1000px) {
+  html { scroll-padding-top: 104px; }
+  body { background: #fff; }
+  ::selection { background: rgba(37,99,185,.16); color: #0b2d5c; }
+  a, button { outline-offset: 4px; }
+  :focus-visible { outline: 3px solid rgba(37,99,185,.32); }
+}

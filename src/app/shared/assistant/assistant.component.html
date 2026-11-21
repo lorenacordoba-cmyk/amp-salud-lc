@@ -1,21 +1,158 @@
-<button type="button" class="assistant-float" aria-label="Abrir asistente inteligente" (click)="toggleAssistant()">
+<button
+  #assistantToggle
+  type="button"
+  class="assistant-float"
+  aria-label="Abrir asistente jurídico"
+  [attr.aria-expanded]="assistantOpen"
+  (click)="toggleAssistant()"
+>
   <span class="assistant-badge" aria-hidden="true">IA</span>
+  <span class="assistant-float-label">Consulta online</span>
   <svg viewBox="0 0 64 64" aria-hidden="true">
-    <path d="M16 15h32a8 8 0 0 1 8 8v19a8 8 0 0 1-8 8H31l-10 8v-8h-5a8 8 0 0 1-8-8V23a8 8 0 0 1 8-8Z"/>
-    <path d="M24 30h16M24 38h11"/>
+    <path d="M16 15h32a8 8 0 0 1 8 8v19a8 8 0 0 1-8 8H31l-10 8v-8h-5a8 8 0 0 1-8-8V23a8 8 0 0 1 8-8Z" />
+    <path d="M24 30h16M24 38h11" />
   </svg>
 </button>
-<div class="assistant-panel" [class.is-open]="assistantOpen" role="dialog" aria-label="Asistente virtual">
-  <div class="assistant-header">
-    <div><strong>Asistente inteligente</strong><span>Estudio Jurídico Lorena Córdoba</span></div>
-    <button type="button" class="assistant-close" aria-label="Cerrar chat" (click)="toggleAssistant()">×</button>
+
+<section
+  #assistantPanel
+  class="assistant-panel"
+  [class.is-open]="assistantOpen"
+  [class.is-dragging]="isDragging"
+  [style.left.px]="isDesktopViewport ? panelPosition?.left : null"
+  [style.top.px]="isDesktopViewport ? panelPosition?.top : null"
+  [style.right]="isDesktopViewport && panelPosition ? 'auto' : null"
+  [style.bottom]="isDesktopViewport && panelPosition ? 'auto' : null"
+  [attr.inert]="assistantOpen ? null : ''"
+  [attr.aria-hidden]="!assistantOpen"
+  role="dialog"
+  aria-modal="false"
+  aria-label="Asistente virtual del estudio"
+>
+  <header class="assistant-header"
+    [attr.title]="isDesktopViewport ? 'Arrastrá esta barra para mover el asistente' : null"
+    [class.can-drag]="isDesktopViewport"
+    (pointerdown)="onPanelPointerDown($event)"
+    (pointermove)="onPanelPointerMove($event)"
+    (pointerup)="onPanelPointerUp($event)"
+    (pointercancel)="onPanelPointerUp($event)">
+
+    <div class="assistant-title">
+      <div class="assistant-title-row">
+        <strong>Asistente jurídico</strong>
+        <span class="online-dot" aria-hidden="true"></span>
+      </div>
+      <span>Atención inicial · Estudio Jurídico Lorena Córdoba</span>
+    </div>
+    <div class="assistant-header-actions">
+      <button type="button" class="assistant-center" title="Centrar el asistente"
+        aria-label="Centrar el asistente en la pantalla" (click)="centerAssistant()">⤢</button>
+      <button
+        *ngIf="hasStarted"
+        type="button"
+        class="assistant-reset"
+        title="Iniciar una nueva consulta"
+        aria-label="Iniciar una nueva consulta"
+        (click)="startNewConsultation()"
+      >
+        ↻
+      </button>
+      <button type="button" class="assistant-close" aria-label="Cerrar chat" (click)="toggleAssistant()">×</button>
+    </div>
+  </header>
+
+  <div class="assistant-meta" *ngIf="triage && (triage.legalArea !== 'UNKNOWN' || urgencyLabel)">
+    <span *ngIf="triage.legalArea !== 'UNKNOWN'" class="area-pill">{{ areaLabel }}</span>
+    <span *ngIf="urgencyLabel" class="urgency-pill" [ngClass]="urgencyClass">{{ urgencyLabel }}</span>
   </div>
-  <div class="assistant-body" #assistantBody>
-    <div *ngFor="let message of assistantMessages" class="assistant-message" [class.user]="message.role === 'user'">{{ message.text }}</div>
-    <div *ngIf="assistantLoading" class="assistant-message bot">Escribiendo...</div>
+
+  <div class="assistant-body" #assistantBody aria-live="polite">
+    <div *ngIf="restoringSession" class="assistant-restoring">Recuperando tu consulta…</div>
+
+    <div
+      *ngFor="let message of assistantMessages; trackBy: trackMessage"
+      class="message-row"
+      [class.user-row]="message.role === 'user'"
+    >
+      <div class="message-avatar" *ngIf="message.role === 'bot'" aria-hidden="true">LC</div>
+      <div class="assistant-message" [class.user]="message.role === 'user'">{{ message.text }}</div>
+    </div>
+
+    <div *ngIf="needsVerification" class="security-card" aria-live="polite">
+      <div class="security-card__icon" aria-hidden="true">✓</div>
+      <div>
+        <strong>Verificación de seguridad</strong>
+        <p>Antes de iniciar una nueva consulta verificamos que la conexión sea legítima. Esto protege al estudio y a quienes usan el asistente.</p>
+        <div #turnstileContainer class="turnstile-container"></div>
+        <span *ngIf="securityLoading" class="security-loading">Creando sesión segura…</span>
+      </div>
+    </div>
+
+    <div *ngIf="assistantLoading" class="message-row">
+      <div class="message-avatar" aria-hidden="true">LC</div>
+      <div class="assistant-message typing" role="status" aria-label="El asistente está procesando la respuesta">
+        <span></span><span></span><span></span>
+        <small class="typing-label" aria-hidden="true">Procesando respuesta…</small>
+      </div>
+    </div>
+
+    <div *ngIf="interviewClosed && studyNotification === 'reviewing'" class="handoff-card" role="status" aria-live="polite">
+      <strong>Consulta registrada. Preparando el informe…</strong>
+      <span>Ya podés cerrar el chat o seguir navegando. Un profesional revisará tu consulta; te confirmaremos cuando el estudio reciba el correo.</span>
+    </div>
+
+    <div *ngIf="interviewClosed && studyNotification === 'sending'" class="handoff-card" role="status" aria-live="polite">
+      <strong>Resumen listo. Enviando la consulta…</strong>
+      <span>Podés seguir navegando. Estamos verificando el envío de los correos.</span>
+    </div>
+
+    <div *ngIf="interviewClosed && studyNotification === 'partial'" class="handoff-card" role="status" aria-live="polite">
+      <strong>Consulta recibida por el estudio</strong>
+      <span>No pudimos confirmar el envío del email de constancia al cliente. El estudio tiene tu consulta; revisá también la carpeta de spam o contactanos por los canales habituales.</span>
+    </div>
+
+    <div *ngIf="interviewClosed && studyNotification === 'sent'" class="handoff-card" role="status">
+      <strong>Consulta enviada al estudio</strong>
+      <span>Un profesional revisará la información que compartiste.</span>
+    </div>
+
+    <div *ngIf="errorMessage" class="assistant-error">{{ errorMessage }}</div>
   </div>
-  <div class="assistant-footer">
-    <textarea [(ngModel)]="assistantInput" placeholder="Escribí tu consulta..." name="assistantInput" rows="2" aria-label="Mensaje para el asistente"></textarea>
-    <button type="button" (click)="sendAssistantMessage()" [disabled]="assistantLoading || !assistantInput.trim()">Enviar</button>
-  </div>
-</div>
+
+  <footer class="assistant-footer">
+    <textarea
+      #assistantInputEl
+      [(ngModel)]="assistantInput"
+      (keydown)="onInputKeydown($event)"
+      (input)="onComposerInput()"
+      (focus)="onComposerFocus()"
+      placeholder="Escribí tu consulta con tus palabras…"
+      name="assistantInput"
+      rows="1"
+      maxlength="3000"
+      enterkeyhint="enter"
+      autocapitalize="sentences"
+      spellcheck="true"
+      aria-describedby="assistantComposerHint"
+      aria-label="Mensaje para el asistente"
+      [disabled]="!canChat || assistantLoading"
+    ></textarea>
+    <button
+      type="button"
+      class="send-button"
+      (click)="sendAssistantMessage()"
+      [disabled]="assistantLoading || !canChat || !assistantInput.trim()"
+      aria-label="Enviar mensaje"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 9-18 9 4-9-4-9Zm4.8 8h7.7L6.2 6.35 7.8 11Zm0 2-1.6 4.65L15.5 13H7.8Z"/></svg>
+    </button>
+    <p *ngIf="interviewClosed" class="composer-closed-note" role="status">La entrevista finalizó. Para otra consulta, usá el botón ↻ de la parte superior.</p>
+    <p class="composer-hint" id="assistantComposerHint">
+      <span class="composer-hint-desktop">Enter: nueva línea · Ctrl+Enter o ⌘+Enter: enviar</span>
+      <span class="composer-hint-mobile">Enter: nueva línea · Tocá la flecha para enviar</span>
+    </p>
+    <p class="privacy-note">
+      Atención inicial automatizada. No reemplaza el asesoramiento de un abogado. No compartas contraseñas, claves fiscales ni datos bancarios.
+    </p>
+  </footer>
+</section>

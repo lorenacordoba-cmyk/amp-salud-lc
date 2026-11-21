@@ -22,32 +22,32 @@
             <div class="form-row"><label>Email *<input type="email" name="email" [(ngModel)]="form.email"
                         required /></label><label>Lugar de residencia *<input type="text" name="location"
                         [(ngModel)]="form.location" required /></label></div>
-            <div class="form-row"><label>Tipo de consulta<select name="consultationType"
-                        [(ngModel)]="form.consultationType">
+            <div class="form-row">
+                <label>Tipo de consulta *
+                    <select name="consultationType" [(ngModel)]="form.consultationType" required>
                         <option value="">Seleccionar</option>
-                        <option value="Cobertura denegada">Cobertura de salud denegada</option>
-                        <option value="Cobertura parcial">Cobertura de salud parcial</option>
-                        <option value="Demora en autorizacion">Demora en autorización</option>
-                        <option value="Consumidor">Derecho del consumidor</option>
+                        <option value="Derecho a la salud">Derecho a la salud</option>
+                        <option value="Derecho del consumidor">Derecho del consumidor</option>
                         <option value="Daños y perjuicios">Daños y perjuicios</option>
-                        <option value="Previsional">Derecho previsional</option>
-                        <option value="Otra">Otra consulta</option>
-                    </select></label><label>Tipo de cobertura<select name="coverageType"
-                        [(ngModel)]="form.coverageType">
-                        <option value="">No aplica / Seleccionar</option>
-                        <option value="Prepaga">Prepaga</option>
-                        <option value="Obra social">Obra social</option>
-                        <option value="PAMI">PAMI</option>
-                    </select></label></div><label>Descripción breve del caso *<textarea name="caseDescription" rows="5"
-                    [(ngModel)]="form.caseDescription" required
-                    placeholder="Contame brevemente qué pasó y qué necesitás resolver."></textarea></label><label
-                class="denial-field">¿Tenés una negativa por escrito?<select name="hasWrittenDenial"
-                    [(ngModel)]="form.hasWrittenDenial">
-                    <option value="No">No</option>
-                    <option value="Si">Sí</option>
-                </select></label><button type="submit" [disabled]="isSubmitting || consultationForm.invalid">{{
+                        <option value="Derecho previsional">Derecho previsional</option>
+                        <option value="Derecho tributario">Derecho tributario</option>
+                        <option value="Otra consulta">Otra consulta</option>
+                    </select>
+                </label>
+                <label>Motivo de consulta *
+                    <input type="text" name="consultationReason" [(ngModel)]="form.consultationReason"
+                        maxlength="21" minlength="1" required placeholder="Ej.: Reajuste jubilatorio" />
+                    <small class="field-hint">Máximo 21 caracteres · {{ form.consultationReason.length }}/21</small>
+                </label>
+            </div>
+            <label>Descripción breve del caso *
+                <textarea name="caseDescription" rows="5" [(ngModel)]="form.caseDescription" required minlength="10"
+                    placeholder="Contame brevemente qué pasó y qué necesitás resolver."></textarea>
+            </label>
+            <div #contactTurnstile class="contact-turnstile"></div>
+            <button type="submit" [disabled]="isSubmitting || consultationForm.invalid">{{
                 isSubmitting ? 'Enviando...' : 'Enviar consulta' }}</button>
-            <p class="form-note">La información se utiliza únicamente para evaluar tu consulta.</p>
+            <p class="form-note">Al enviar este formulario, solicitás que el estudio se comunique con vos únicamente para responder esta consulta.</p>
             <p class="message ok" *ngIf="submitMessage">{{ submitMessage }}</p>
             <p class="message error" *ngIf="submitError">{{ submitError }}</p>
         </form>

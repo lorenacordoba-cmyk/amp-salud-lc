@@ -90,4 +90,130 @@
 .contact-form button:not(:disabled):hover{background:linear-gradient(135deg,#0a4489,#1f58a6);box-shadow:0 12px 25px rgba(11,77,155,.2)}
 .form-note{color:#7b8899}
 @media(max-width:720px){.topbar{background:rgba(255,255,255,.98)}}
-.kicker,.form-head span{color:#123e78}
+
+
+.consent-field { display:flex !important; align-items:flex-start; gap:10px; font-size:.83rem; line-height:1.4; }
+.consent-field input { width:18px; height:18px; margin-top:2px; flex:0 0 auto; }
+.contact-turnstile { min-height: 65px; margin: 4px 0 8px; }
+
+/* =========================================================
+   MOBILE POLISH — contacto
+   Inputs cómodos, jerarquía clara y Turnstile responsive.
+   ========================================================= */
+.contact-turnstile { width: 100%; max-width: 100%; overflow: hidden; }
+
+@media (max-width: 720px) {
+  .contact-page { min-height: 100dvh; }
+  .topbar {
+    min-height: 70px;
+    padding-left: max(13px, env(safe-area-inset-left, 0px));
+    padding-right: max(13px, env(safe-area-inset-right, 0px));
+  }
+
+  .intro { padding: 28px 15px 26px; }
+  .intro h1 { font-size: clamp(2.15rem, 10vw, 2.8rem); }
+  .intro>p:not(.kicker) { font-size: .95rem; }
+  .contact-details { gap: 12px; }
+  .contact-details div {
+    padding: 10px 0;
+  }
+
+  .form-wrap {
+    width: calc(100% - 20px);
+    padding: 22px 0 34px;
+  }
+  .contact-form {
+    padding: 17px 13px;
+    gap: 13px;
+    border-radius: 16px;
+  }
+  .form-head { gap: 3px; }
+  .form-head strong { font-size: 1.17rem; }
+  .form-row { gap: 13px; }
+  .contact-form label { gap: 6px; font-size: .77rem; }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    min-height: 52px;
+    padding: 13px 12px;
+    border-radius: 11px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+  .contact-form textarea { min-height: 142px; }
+
+  .consent-field {
+    display: grid !important;
+    grid-template-columns: 22px minmax(0,1fr);
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #dce6f2;
+    border-radius: 12px;
+    background: #f8fbff;
+    font-size: .78rem;
+  }
+  .consent-field input { width: 20px; height: 20px; margin-top: 0; }
+
+  .contact-turnstile { min-height: 66px; }
+
+  .contact-form button {
+    min-height: 54px;
+    border-radius: 12px;
+    font-size: .79rem;
+  }
+  .form-note { padding: 0 3px; line-height: 1.45; }
+}
+
+@media (max-width: 380px) {
+  .brand-copy strong { max-width: 132px; }
+  .intro { padding-left: 12px; padding-right: 12px; }
+  .form-wrap { width: calc(100% - 14px); }
+  .contact-form { padding-left: 11px; padding-right: 11px; }
+}
+
+
+/* =========================================================
+   DESKTOP UX — contacto con mayor jerarquía y lectura
+   ========================================================= */
+@media (min-width: 1000px) {
+  .topbar { width: min(1280px, calc(100% - 64px)); height: 88px; }
+  .back-link { min-height: 42px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; background: #f6f9fd; border: 1px solid #dce6f2; }
+
+  .intro {
+    padding: 72px max(32px, calc((100vw - 1280px)/2)) 62px;
+  }
+  .intro h1 { font-size: clamp(3.8rem, 4.6vw, 5.4rem); }
+  .intro>p:not(.kicker) { max-width: 760px; font-size: 1.04rem; }
+  .contact-details { max-width: 760px; gap: 56px; }
+
+  .form-wrap {
+    width: min(1080px, calc(100% - 64px));
+    padding: 68px 0 82px;
+  }
+  .contact-form {
+    padding: 40px;
+    gap: 20px;
+    border-radius: 18px;
+    box-shadow: 0 28px 70px rgba(11,45,92,.09);
+  }
+  .form-head { padding-bottom: 22px; }
+  .form-head strong { font-size: 1.45rem; }
+  .form-row { gap: 20px; }
+  .contact-form label { gap: 9px; font-size: .77rem; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    min-height: 50px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: .95rem;
+  }
+  .contact-form textarea { min-height: 155px; }
+  .denial-field { max-width: 50%; }
+  .contact-form button { min-height: 54px; border-radius: 10px; }
+  .form-note { font-size: .75rem; }
+}
+
+/* Ayuda del campo corto de motivo */
+.contact-form .field-hint { font-size: .69rem; color: var(--muted); font-weight: 500; align-self: flex-end; }
